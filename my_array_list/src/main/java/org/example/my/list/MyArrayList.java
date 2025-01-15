@@ -17,7 +17,6 @@ public class MyArrayList<T> {
         this.matrixElements = new Object[DEFAULT_CAPACITY];
     }
 
-
     public MyArrayList(int initialCapacity) {
         if (initialCapacity > 0) {
             this.matrixElements = new Object[initialCapacity];
@@ -38,7 +37,7 @@ public class MyArrayList<T> {
     // Adds the specified element at index to the list.
     public void add(int index, T element) {
 
-        if (index >= 0 && index < size) {
+        if (chekIndex(index)) {
             matrixElements = copyMatrixWithStepToRight(index);
             matrixElements[index] = element;
             size++;
@@ -47,7 +46,6 @@ public class MyArrayList<T> {
         }
     }
 
-    // Copy matrixElement at new matrix with one step right from index.
     private Object[] copyMatrixWithStepToRight(int index) {
         Object[] newObject = createObjectNewLength();
 
@@ -65,6 +63,37 @@ public class MyArrayList<T> {
         return newObject;
     }
 
+    public void remove(int index){
+        if(chekIndex(index)){
+            copyMatrixWithStepToLeft(index);
+            size--;
+        } else {
+            System.err.printf("Out of bounds Check Index -> %d", index);
+        }
+    }
+
+    private void copyMatrixWithStepToLeft(int index){
+        Object[] matrixElement = this.matrixElements;
+        int oldSize = size;
+
+        int add = 0;
+        for (int i = index; i < size; i++) {
+            if (i == index) {
+                add++;
+            }
+            int newIndex = i + add;
+
+            this.matrixElements[i] = matrixElements[newIndex];
+        }
+    }
+
+    private boolean chekIndex(int index){
+        return (index >= 0) && (index < size);
+    }
+
+    // Copy matrixElement at new matrix with one step right from index.
+
+
     // Creates new matrix with new or old length.
     private Object[] createObjectNewLength() {
         if (isLimitSize()) {
@@ -74,12 +103,10 @@ public class MyArrayList<T> {
         }
     }
 
-
     //Returns the element at the specified position in this list.
     public T get(int index) {
         return (T) matrixElements[index];
     }
-
 
     private void growMatrix() {
         if (isLimitSize()) {

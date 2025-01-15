@@ -2,13 +2,17 @@ package org.example;
 
 import org.example.my.list.MyArrayList;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         MyArrayList<String> ss = new MyArrayList<>();
         StringBuffer ff = new StringBuffer();
         ff.append("25");
         Entyti entyti = new Entyti("Pablo", 25);
-
+        Grass grass = new Grass("Grass", 1);
 
         ss.add("1");
         ss.add(entyti.toString());
@@ -30,6 +34,10 @@ public class Main {
         System.out.printf("Element 5 -> %s\n",ss.get(4));
         System.out.printf("Element 6 -> %s\n",ss.get(5));
 
+        ss.remove(4);
+        System.out.printf("Element 5 -> %s\n",ss.get(4));
+        System.out.printf("Element 6 -> %s\n",ss.get(5));
+
     }
 
     static class Entyti{
@@ -41,6 +49,12 @@ public class Main {
         }
         public String toString(){
             return String.format("Name - %s\nAge - %d", name, age);
+        }
+    }
+
+    static class Grass extends Entyti{
+        public Grass(String name, int age){
+            super(name,age);
         }
     }
 
