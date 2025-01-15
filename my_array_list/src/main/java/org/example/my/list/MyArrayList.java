@@ -1,38 +1,40 @@
 package org.example.my.list;
 
 public class MyArrayList<T> {
-
+    // Default size capacity my ArrayList.
     private static final int DEFAULT_CAPACITY = 10;
 
-    private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {};
+    //Default capacity for empty list.
+    private static final Object[] DEFAULT_CAPACITY_EMPTY_ELEMENTDATA = {};
 
-    // The array buffer into which the elements of the ArrayList
-    private T[] matrixElements;
+    // The array buffer into which the elements of the ArrayList.
+    private Object[] matrixElements;
 
     private int size;
 
-    public MyArrayList(){
-        this.matrixElements = (T[]) new Object[DEFAULT_CAPACITY];
+    public MyArrayList() {
+        this.matrixElements = new Object[DEFAULT_CAPACITY];
     }
 
 
-
-    public MyArrayList(int initialCapacity){
+    public MyArrayList(int initialCapacity) {
         if (initialCapacity > 0) {
-            this.matrixElements = (T[]) new Object[initialCapacity];
+            this.matrixElements = new Object[initialCapacity];
         } else if (initialCapacity == 0) {
-            this.matrixElements =(T[]) DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
+            this.matrixElements = DEFAULT_CAPACITY_EMPTY_ELEMENTDATA;
         } else {
-            throw new IllegalArgumentException("Illegal Capacity: "+
+            throw new IllegalArgumentException("Illegal Capacity: " +
                     initialCapacity);
         }
     }
 
-    public void add(T t){
+    //Appends the specified element to the end of this list.
+    public void add(T t) {
         matrixElements[size++] = t;
     }
 
-    public <T> T get(int index){
+    //Returns the element at the specified position in this list.
+    public T get(int index) {
         return (T) matrixElements[index];
     }
 
