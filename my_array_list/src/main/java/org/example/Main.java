@@ -22,10 +22,13 @@ public class Main {
         ss.add("10");
         ss.add("11");
         ss.add("12");
+        System.out.printf("Element 5 -> %s\n",ss.get(4));
+        System.out.printf("Element 6 -> %s\n",ss.get(5));
+        ss.add(4,"55");
 
-        System.out.println(ss.get(0));
-        System.out.println(ss.get(1));
-        System.out.println(ss.get(2));
+
+        System.out.printf("Element 5 -> %s\n",ss.get(4));
+        System.out.printf("Element 6 -> %s\n",ss.get(5));
 
     }
 

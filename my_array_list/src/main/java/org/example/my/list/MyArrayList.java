@@ -31,10 +31,47 @@ public class MyArrayList<T> {
 
     //Appends the specified element to the end of this list.
     public void add(T t) {
-        if(size == matrixElements.length) {
-            extensionMatrix();
-        }
+        growMatrix();
         matrixElements[size++] = t;
+    }
+
+    // Adds the specified element at index to the list.
+    public void add(int index, T element) {
+
+        if (index >= 0 && index < size) {
+            matrixElements = copyMatrixWithStepToRight(index);
+            matrixElements[index] = element;
+            size++;
+        } else {
+            System.err.printf("Out of bounds Check Index -> %d", index);
+        }
+    }
+
+    // Copy matrixElement at new matrix with one step right from index.
+    private Object[] copyMatrixWithStepToRight(int index) {
+        Object[] newObject = createObjectNewLength();
+
+        int add = 0;
+        for (int i = 0; i < size; i++) {
+            if (i == index) {
+                newObject[i] = null;
+                add++;
+            }
+
+            int newIndex = i + add;
+            newObject[newIndex] = matrixElements[i];
+        }
+
+        return newObject;
+    }
+
+    // Creates new matrix with new or old length.
+    private Object[] createObjectNewLength() {
+        if (isLimitSize()) {
+            return new Object[newLength()];
+        } else {
+            return new Object[matrixElements.length];
+        }
     }
 
 
@@ -43,20 +80,31 @@ public class MyArrayList<T> {
         return (T) matrixElements[index];
     }
 
+
+    private void growMatrix() {
+        if (isLimitSize()) {
+            extensionMatrix();
+        }
+    }
+
+    private boolean isLimitSize() {
+        return size == matrixElements.length;
+    }
+
     //todo implement dynamic array expansion
     private void extensionMatrix() {
         if (isSizeMatrixElementsNotZeroOrEmpty()) {
-            matrixElements = copyMatrixElement(newLength());
+            matrixElements = copyMatrixElement();
         } else {
             matrixElements = new Object[newLength()];
         }
     }
 
     // Copy old matrix in new extension matrix.
-    private Object[] copyMatrixElement(int newLength) {
+    private Object[] copyMatrixElement() {
         int oldLength = matrixElements.length;
-        Object[] newMatrix = new Object[newLength];
-        
+        Object[] newMatrix = new Object[newLength()];
+
         for (int i = 0; i < size; i++) {
             newMatrix[i] = matrixElements[i];
         }
