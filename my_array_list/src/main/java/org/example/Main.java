@@ -2,9 +2,6 @@ package org.example;
 
 import org.example.my.list.MyArrayList;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Main {
     public static void main(String[] args) {
         MyArrayList<String> ss = new MyArrayList<>();
@@ -23,6 +20,8 @@ public class Main {
         ss.add("8");
         ss.add("9");
         ss.add("10");
+        ss.add("11");
+        ss.add("12");
 
         System.out.println(ss.get(0));
         System.out.println(ss.get(1));

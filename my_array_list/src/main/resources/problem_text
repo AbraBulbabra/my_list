@@ -1,6 +1,6 @@
 1. Реализовать MyArrayList.
  Методы, обязательные к реализации:
-- добавить элемент: add(T element),
+- добавить элемент: add(T element),+
 - добавить элемент по индексу: add(int index, T element),
 - получить элемент: get(int index),
 - удалить элемент remove(int index),
