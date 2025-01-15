@@ -63,8 +63,8 @@ public class MyArrayList<T> {
         return newObject;
     }
 
-    public void remove(int index){
-        if(chekIndex(index)){
+    public void remove(int index) {
+        if (chekIndex(index)) {
             copyMatrixWithStepToLeft(index);
             size--;
         } else {
@@ -72,7 +72,7 @@ public class MyArrayList<T> {
         }
     }
 
-    private void copyMatrixWithStepToLeft(int index){
+    private void copyMatrixWithStepToLeft(int index) {
         Object[] matrixElement = this.matrixElements;
         int oldSize = size;
 
@@ -87,7 +87,7 @@ public class MyArrayList<T> {
         }
     }
 
-    private boolean chekIndex(int index){
+    private boolean chekIndex(int index) {
         return (index >= 0) && (index < size);
     }
 
@@ -154,6 +154,14 @@ public class MyArrayList<T> {
     // Return true if matrixElement > 0 or Not DEFAULT_CAPACITY_EMPTY_ELEMENT_DATA.
     private boolean isSizeMatrixElementsNotZeroOrEmpty() {
         return matrixElements.length > 0 || matrixElements != DEFAULT_CAPACITY_EMPTY_ELEMENT_DATA;
+    }
+
+    public void clear() {
+        final Object[] es = matrixElements;
+        for (int i = 0; i < size; i++) {
+            es[i] = null;
+        }
+        size = 0;
     }
 
 }

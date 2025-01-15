@@ -38,6 +38,8 @@ public class Main {
         System.out.printf("Element 5 -> %s\n",ss.get(4));
         System.out.printf("Element 6 -> %s\n",ss.get(5));
 
+        ss.clear();
+        int i = 3;
     }
 
     static class Entyti{
