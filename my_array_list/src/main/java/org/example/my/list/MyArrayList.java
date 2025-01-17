@@ -1,5 +1,7 @@
 package org.example.my.list;
 
+import java.util.Comparator;
+
 public class MyArrayList<T> {
     // Default size capacity my ArrayList.
     private static final int DEFAULT_CAPACITY = 10;
@@ -11,7 +13,7 @@ public class MyArrayList<T> {
     private Object[] matrixElements;
 
     // Count element in matrixElements.
-    private int size;
+    public int size;
 
     public MyArrayList() {
         this.matrixElements = new Object[DEFAULT_CAPACITY];
@@ -23,8 +25,7 @@ public class MyArrayList<T> {
         } else if (initialCapacity == 0) {
             this.matrixElements = DEFAULT_CAPACITY_EMPTY_ELEMENT_DATA;
         } else {
-            throw new IllegalArgumentException("Illegal Capacity: " +
-                    initialCapacity);
+            throw new IllegalArgumentException("Illegal Capacity: " + initialCapacity);
         }
     }
 
@@ -108,6 +109,10 @@ public class MyArrayList<T> {
         return (T) matrixElements[index];
     }
 
+    public <T> void set(int index, T element) {
+        matrixElements[index] = element;
+    }
+
     private void growMatrix() {
         if (isLimitSize()) {
             extensionMatrix();
@@ -164,4 +169,116 @@ public class MyArrayList<T> {
         size = 0;
     }
 
+    /**
+     * Start sorting
+     *
+     * *@param start - left border of the array
+     * *@param end   - right border of the array
+     *
+    */
+    public <T extends Comparable<T>> void quickSort() {
+        int start = 0;
+        int end = size - 1;
+        quickSort(start, end);
+    }
+
+
+    /**
+     * Recursion method
+     *
+     * *@param partition - index of the already sorted part of the array.
+     * everything on the left will always be smaller
+     * everything on the right is always bigger
+     * *@param start - left border of the array
+     * *@param end   - right border of the array
+     *
+     */
+    private <T extends Comparable<T>> void quickSort(int start, int end) {
+        int partition = partition(start, end);
+
+        if (partition - 1 > start) {
+            quickSort(start, partition - 1);
+        }
+        if (partition + 1 < end) {
+            quickSort(partition + 1, end);
+        }
+    }
+
+    /**
+     * Sorting method
+     *
+     * *@param arr - sorting array
+     * *@param pivot - element for comparison
+     * *@param wall - everything to the left of which the indices are less than Pivot,
+     * to the right are greater,
+     * at the end at this point they become Pivot
+     * *@param end   - right border of the array
+     *
+     */
+    private <T extends Comparable<T>> int partition(int wall, int end) {
+        MyArrayList<T> arr = (MyArrayList<T>) this;
+        T pivot = arr.get(end);
+
+        for (int i = wall; i < end; i++) {
+            if (arr.get(i).compareTo(pivot) < 0) {
+                T temp = arr.get(wall);
+                arr.set(wall, arr.get(i));
+                arr.set(i, temp);
+                wall++;
+            }
+        }
+
+
+        T temp = arr.get(wall);
+        arr.set(wall, pivot);
+        arr.set(end, temp);
+
+        return wall;
+    }
+
+    /**
+     * Start sorting with Comparator
+     *
+     * *@param start - left border of the array
+     * *@param end   - right border of the array
+     *
+     */
+    public <T> void quickSort(Comparator<T> t) {
+        int start = 0;
+        int end = size - 1;
+        quickSort(t, start, end);
+    }
+
+    private <T> void quickSort(Comparator<T> t, int start, int end) {
+        int partition = partition(t, start, end);
+
+        if (partition - 1 > start) {
+            quickSort(t, start, partition - 1);
+        }
+        if (partition + 1 < end) {
+            quickSort(t, partition + 1, end);
+        }
+    }
+
+
+    private <T> int partition(Comparator<T> t, int start, int end) {
+        MyArrayList<T> arr = (MyArrayList<T>) this;
+        T pivot = arr.get(end);
+
+        for (int i = start; i < end; i++) {
+            if (t.compare(arr.get(i), pivot) < 0) {
+                T temp = arr.get(start);
+                arr.set(start, arr.get(i));
+                arr.set(i, temp);
+                start++;
+            }
+        }
+
+
+        T temp = arr.get(start);
+        arr.set(start, pivot);
+        arr.set(end, temp);
+
+        return start;
+    }
 }
