@@ -171,11 +171,10 @@ public class MyArrayList<T> {
 
     /**
      * Start sorting
-     *
+     * <p>
      * *@param start - left border of the array
      * *@param end   - right border of the array
-     *
-    */
+     */
     public <T extends Comparable<T>> void quickSort() {
         int start = 0;
         int end = size - 1;
@@ -185,13 +184,12 @@ public class MyArrayList<T> {
 
     /**
      * Recursion method
-     *
+     * <p>
      * *@param partition - index of the already sorted part of the array.
      * everything on the left will always be smaller
      * everything on the right is always bigger
      * *@param start - left border of the array
      * *@param end   - right border of the array
-     *
      */
     private <T extends Comparable<T>> void quickSort(int start, int end) {
         int partition = partition(start, end);
@@ -206,14 +204,13 @@ public class MyArrayList<T> {
 
     /**
      * Sorting method
-     *
+     * <p>
      * *@param arr - sorting array
      * *@param pivot - element for comparison
      * *@param wall - everything to the left of which the indices are less than Pivot,
      * to the right are greater,
      * at the end at this point they become Pivot
      * *@param end   - right border of the array
-     *
      */
     private <T extends Comparable<T>> int partition(int wall, int end) {
         MyArrayList<T> arr = (MyArrayList<T>) this;
@@ -238,10 +235,9 @@ public class MyArrayList<T> {
 
     /**
      * Start sorting with Comparator
-     *
+     * <p>
      * *@param start - left border of the array
      * *@param end   - right border of the array
-     *
      */
     public <T> void quickSort(Comparator<T> t) {
         int start = 0;

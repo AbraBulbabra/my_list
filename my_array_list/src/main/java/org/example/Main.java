@@ -3,7 +3,6 @@ package org.example;
 import org.example.my.list.MyArrayList;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -93,8 +92,7 @@ public class Main {
         morList.add(entytiList);
 
 
-
-        for (int i = 0; i < morList.size() ; i++) {
+        for (int i = 0; i < morList.size(); i++) {
             chekList(morList.get(i));
         }
 
@@ -107,7 +105,7 @@ public class Main {
         sortComparator(entytiList, new EntytiComparator());
         print(entytiList);
 
-        for (int i = 0; i < morList.size() ; i++) {
+        for (int i = 0; i < morList.size(); i++) {
             morList.get(i).clear();
             print(morList.get(i));
         }
